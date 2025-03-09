@@ -6,7 +6,6 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext
 from deepfake_detector import analyse_video
 from fake_news_checker import detect_fake_news, analyze_news_with_ai, classify_with_ai
-from url_checker import handle_url
 
 TELEGRAM_BOT_TOKEN = "7661066348:AAGg5mRhCFRagqjyswHRVDgtHEBuBqut5gw"
 
@@ -59,7 +58,6 @@ def main():
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.VIDEO, handle_video))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_fake_news))
-    app.add_handler(MessageHandler(filters.Entity("url"), handle_url))
     logging.info("🤖 Bot is running...")
     app.run_polling()
 
